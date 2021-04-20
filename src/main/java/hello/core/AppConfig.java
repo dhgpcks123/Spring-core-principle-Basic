@@ -16,19 +16,26 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AppConfig {
 
+    //call AppConfig.memberService
+    //call AppConfig.memberRepository ...? * 3 ?
+    //call AppConfig.orderService
+
     @Bean
     //Bean을 적으면 다 Spring 컨테이너란 곳에 등록 될 애들이다!
     public MemberService memberService() {
+        System.out.println("call AppConfig.memberService");
         return new MemberServiceImpl(memberRepository());
     }
 
     @Bean
     public MemberRepository memberRepository() {
+        System.out.println("call AppConfig.memberRepository");
         return new MemoryMemberRepository();
     }
 
     @Bean
     public OrderService orderService(){
+        System.out.println("call AppConfig.orderService");
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
