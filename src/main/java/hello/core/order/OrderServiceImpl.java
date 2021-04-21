@@ -7,7 +7,7 @@ import hello.core.member.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component //("OrderService2")
+@Component ("OrderService2")
 public class OrderServiceImpl implements OrderService {
 
     private final MemberRepository memberRepository;
