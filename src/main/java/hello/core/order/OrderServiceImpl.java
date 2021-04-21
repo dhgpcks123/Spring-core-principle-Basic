@@ -10,14 +10,30 @@ import org.springframework.stereotype.Component;
 @Component ("OrderService2")
 public class OrderServiceImpl implements OrderService {
 
-    private final MemberRepository memberRepository;
-    private final DiscountPolicy discountPolicy;
+    private MemberRepository memberRepository; //final붙였다? 필수! 값이 꼭 있어야 한다. 지정한 거라고 볼 수 있음.
+    private DiscountPolicy discountPolicy;
+
+    //주입 두번 째 단게에서 일어남 @Autowired
+    @Autowired
+    public void setMemberRepository(MemberRepository memberRepository){
+        System.out.println("memberRepository = " + memberRepository);
+        this.memberRepository = memberRepository;
+    }
+    @Autowired
+    public void setDiscountPolicy(DiscountPolicy discountPolicy){
+        System.out.println("discountPolicy = " + discountPolicy);
+        this.discountPolicy = discountPolicy;
+    }
+    //new OrderServiceImpl(memberRepository, discountPolicy) 스프링 빈 등록할 때 자동 등록 된다.
+//    @Autowired 생성자가 하나일 경우 생략 가능하다.
 
     @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        System.out.println("OrderServiceImpl.OrderServiceImpl");
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
+
     //누군가 클라이언트의 OrderServiceImpl에 DiscountPolicy의 구현 객체를 대신 생성하고 주입해줘야 한다!
     //의존 관계를 주입해준다 (DI - Dependency Injection) 의존 관계 주입
     //생성자를 통해 어떤 구현 객체가 들어올지(주입 될지) 전혀 알 수 없다. 결정은 외부(AppConfig)에서 한다.

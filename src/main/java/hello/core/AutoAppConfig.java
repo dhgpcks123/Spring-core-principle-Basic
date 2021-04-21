@@ -22,10 +22,10 @@ import org.springframework.context.annotation.FilterType;
 //@Configuration이 컴포넌트의 대상이 된 이유도, @Configuration을 열어보면 @Component 애노테이션이 붙어ㅣㅆ기 때문ㅇ!
 public class AutoAppConfig {
 
-    @Bean(name = "memoryMemberRepository")
-    MemberRepository memberRepository(){
-        return new MemoryMemberRepository();
-    }
+//    @Bean(name = "memoryMemberRepository")
+//    MemberRepository memberRepository(){
+//        return new MemoryMemberRepository();
+//    }
     /*
     컴포넌트 스캔 기본 대상
     컴포넌트 스캔은 @Component뿐만 아니라 다음과 같은 내용도 추가로 대상에 포함한다.
