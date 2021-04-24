@@ -3,6 +3,7 @@ package hello.core.order;
 import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component ("OrderService2")
@@ -16,24 +17,21 @@ public class OrderServiceImpl implements OrderService {
     //주입 두번 째 단게에서 일어남 @Autowired
     // 선택, 변경- MemberRepository가 spring bean에 등록 안됐을 수도 있다. 그 때도 사용 가능(오잉?)
     // 아 설정을 해주네 (required=false) 필수값이 아니다. 있어도 되고, 없어도 된다.
-    /*
-    @Autowired
-    public void setMemberRepository(MemberRepository memberRepository){
-        System.out.println("memberRepository = " + memberRepository);
-        this.memberRepository = memberRepository;
-    }
-    @Autowired
-    public void setDiscountPolicy(DiscountPolicy discountPolicy){
-        System.out.println("discountPolicy = " + discountPolicy);
-        this.discountPolicy = discountPolicy;
-    }
+
+//    @Autowired
+//    public void setMemberRepository(MemberRepository memberRepository){
+//        System.out.println("memberRepository = " + memberRepository);
+//        this.memberRepository = memberRepository;
+//    }
+//    @Autowired
+//    public void setDiscountPolicy(DiscountPolicy discountPolicy){
+//        System.out.println("discountPolicy = " + discountPolicy);
+//        this.discountPolicy = discountPolicy;
+//    }
     // new OrderServiceImpl(memberRepository, discountPolicy) 스프링 빈 등록할 때 자동 등록 된다.
     // @Autowired 생성자가 하나일 경우 생략 가능하다.
     // 불변, 필수 의존관계에 사용
-    // @Autowired
-
-     */
-
+     @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         System.out.println("OrderServiceImpl.OrderServiceImpl");
         this.memberRepository = memberRepository;
