@@ -3,10 +3,12 @@ package hello.core.order;
 import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component ("OrderService2")
+@RequiredArgsConstructor
+//final붙은 걸로 생성자 만들어줌★★★★★★★★★★★★ 와우 필드로 @Autowired로 쓰는 것 처럼 아주 간편해지네! 생성자도있고, final도 있고!
 public class OrderServiceImpl implements OrderService {
 
     private final MemberRepository memberRepository; //final붙였다? 필수! 값이 꼭 있어야 한다. 지정한 거라고 볼 수 있음.
@@ -31,12 +33,12 @@ public class OrderServiceImpl implements OrderService {
     // new OrderServiceImpl(memberRepository, discountPolicy) 스프링 빈 등록할 때 자동 등록 된다.
     // @Autowired 생성자가 하나일 경우 생략 가능하다.
     // 불변, 필수 의존관계에 사용
-     @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-        System.out.println("OrderServiceImpl.OrderServiceImpl");
-        this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
-    }
+//    @Autowired
+//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+//        System.out.println("OrderServiceImpl.OrderServiceImpl");
+//        this.memberRepository = memberRepository;
+//        this.discountPolicy = discountPolicy;
+//    }
 
     //누군가 클라이언트의 OrderServiceImpl에 DiscountPolicy의 구현 객체를 대신 생성하고 주입해줘야 한다!
     //의존 관계를 주입해준다 (DI - Dependency Injection) 의존 관계 주입
