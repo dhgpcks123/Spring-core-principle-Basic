@@ -3,6 +3,10 @@ package hello.core.lifecycle;
 //import org.springframework.beans.factory.DisposableBean;
 //import org.springframework.beans.factory.InitializingBean;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+//javax로 시작한다? java진영에서 공식적으로 지원함. 꼭 스프링 아니어도 사용할 수 있음.
 public class NetworkClient{
 //        implements InitializingBean, DisposableBean {
     private String url;
@@ -31,11 +35,13 @@ public class NetworkClient{
         System.out.println("close " + url);
     }
 
+    @PostConstruct
     public void init() {
         System.out.println("NetworkClient.init");
         connect();
         call("초기화 연결 메시지");
     }
+    @PreDestroy
     public void close() {
         System.out.println("NetworkClient.close");
         disconnect();
