@@ -1,0 +1,32 @@
+<h3> 웹 스코프 </h3>
+
+    웹 스코프의 특징
+    -웹 스코프는 웹 환경에서만 동작한다.
+    -프로토타입과 다르게 스프링이 해당 스코프의 종료 시점까지 관리한다. 따라서 종료 메서드가 호출된다.
+
+    웹 스코프 종류
+    -request : HTTP 쵸어 하나 들어오고 나갈 때 까지 유지되는 스코프, 각각의 HTTP 요청마다 별도의 빈 인스턴스가 생성되고 관리된다.
+    -session : HTTP session과 동일한 생명주기를 가지는 스코프
+    -application : 서블릿 컨텍스트와 동일하 생명주기
+    -websocket : 웹 소켓과 동일한 생명주기
+
+    request 스코프 예제로. 나머지도 범위만 다르지 동작 방식 비슷하다.
+
+
+    #request 스코프 예제 개발
+
+    참고 : spring-boot-starter-web 라이브러리를 추가하면 스프링 부트는 내장 톰켓 서버를 활용해서 웹 서버와 스프링을 함께 실행시킨다.
+
+    참고 : 웹 라이브러리가 없으면 AnnotationConfigApplicationContext을 기반으로 애플리케이션을 구동.
+    웹 라이브러리가 추가되면? 웹과 관련된 추가 설정과 환경들이 필요해서
+    AnnoationConfigServletWebServerAppliationContext를 기반으로 애플리케이션을 구성한다.
+
+    request 스코프 예제 개발
+    동시에 려어 HTTP 요청이 오면 정확히 어떤 요청이 남긴 로그인지 구분하기 어렵다.
+    이럴 때 딱 사용하기 좋은 게 바로 request 스코프이다.
+
+    개개인에게 로그를 주는거지.
+    기대하는 공통 포멧 : [UUID][requestURL]{message}
+    UUID를 사용해서 HTTP 요청을 구분하자.
+    requestURL 정보도 추가로 넣어서 어떤 URL을 요청해서 남은 로그인지 확인하자.
+
